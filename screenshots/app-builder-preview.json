@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Meridian",
+      "hasCanvas": false,
+      "bodyTextLen": 636,
+      "bodyTextHash": "33e51fb73c45aca231910006b92d455598c59c69a570ee7751cd29121a78bcdf",
+      "bodyTextPrefix": "Meridian World indicators · 2023 sample People Income Lifespan O",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Meridian",
+      "hasCanvas": false,
+      "bodyTextLen": 617,
+      "bodyTextHash": "84ea3e6f5ceabd44f23f6785fa8deec6c36222bdf582d85a1b445464993cb66b",
+      "bodyTextPrefix": "Meridian World indicators · 2023 sample Search countries People ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}
