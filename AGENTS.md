@@ -277,7 +277,7 @@ changes. Revive, reboot-wipe and the `startup.sh` worked example:
    the placeholder card. Meanwhile it keeps `/workspace/.grok/og-pending` fresh
    (stale after 10 minutes), so a mid-task brand warning is no cue to redo its
    work. Unless your own prompt says you *are* the pass — then make the
-   assets.
+   assets. See [Open Graph assets](docs/og-workflow.md) for the hand-over commands.
 7. **Verify it actually RENDERS — mandatory, before you say it's done.** A 200
    from curl is NOT enough; blank/white pages are the #1 failure. Run
    `node scripts/browser-smoke.mjs` — ONE run audits **desktop and mobile** and

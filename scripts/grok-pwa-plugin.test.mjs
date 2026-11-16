@@ -1,14 +1,14 @@
 import assert from "node:assert/strict";
-import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import test from "node:test";
+import test, { after, before } from "node:test";
 import {
   appNameFromHost,
-  createHeadInjector,
+  createHeadInjector as createWorkspaceHeadInjector,
   grokXCreatorHeadTags,
-  injectGrokPwaHead,
+  injectGrokPwaHead as injectWorkspaceHead,
   isDocumentPath,
   isInstallQuery,
   publicAppHost,
@@ -20,6 +20,31 @@ import {
 import { renderInstallPage } from "./grok-pwa-plugin.mjs";
 
 const TEMPLATE_ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+
+// Use a workspace without app metadata or a card unless the test supplies one.
+const emptyWorkspace = mkdtempSync(join(tmpdir(), "grok-pwa-"));
+after(() => rmSync(emptyWorkspace, { recursive: true, force: true }));
+
+before(() => {
+  for (const key of [
+    "VITE_PUBLIC_HOSTNAME",
+    "VITE_PROJECT_ID",
+    "VITE_GROK_EXTENSIONS",
+    "VITE_OG_SERVICE_URL",
+    "X_CREATOR",
+    "X_CREATOR_ID",
+  ]) {
+    delete process.env[key];
+  }
+});
+
+function injectGrokPwaHead(html, ctx) {
+  return injectWorkspaceHead(html, { cwd: emptyWorkspace, ...ctx });
+}
+
+function createHeadInjector(ctx) {
+  return createWorkspaceHeadInjector({ cwd: emptyWorkspace, ...ctx });
+}
 
 test("injects before </head>", () => {
   const out = injectGrokPwaHead("<html><head><title>x</title></head><body></body></html>");
