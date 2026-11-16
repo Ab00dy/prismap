@@ -59,9 +59,8 @@ async function emitSessionCookie(
     sessionTokenName,
   )?.value;
   if (!sessionValue) {
-    console.error(`${LOG} signed Set-Cookie missing session token value`, {
-      cookiePreview: signedCookie.slice(0, 120),
-    });
+    // Never log a Set-Cookie value: it can contain a live session credential.
+    console.error(`${LOG} signed Set-Cookie missing session token value`);
     return null;
   }
 
